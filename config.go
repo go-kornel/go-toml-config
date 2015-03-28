@@ -33,9 +33,9 @@
 			panic(err)
 		}
 
-	You can also create separate ConfigSets for different config files:
+	You can also create separate config.Sets for different config files:
 
-		networkConfig = config.NewConfigSet("network settings", config.ExitOnError)
+		networkConfig = config.New("network settings", config.ExitOnError)
 		networkConfig.String("host", "localhost")
 		networkConfig.Int("port", 8080)
 		networkConfig.Parse("/path/to/network.conf")
@@ -55,112 +55,114 @@ import (
 	"github.com/pelletier/go-toml"
 )
 
-// -- ConfigSet
+// -- config.Set
 
-type ConfigSet struct {
+// A Set represents a set of defined configure flags. The zero value of a Set
+// has no name and has ContinueOnError error handling.
+type Set struct {
 	*flag.FlagSet
 }
 
-// BoolVar defines a bool config with a given name and default value for a ConfigSet.
+// BoolVar defines a bool config with a given name and default value for a config.Set.
 // The argument p points to a bool variable in which to store the value of the config.
-func (c *ConfigSet) BoolVar(p *bool, name string, value bool) {
+func (c *Set) BoolVar(p *bool, name string, value bool) {
 	c.FlagSet.BoolVar(p, name, value, "")
 }
 
 // Bool defines a bool config variable with a given name and default value for
-// a ConfigSet.
-func (c *ConfigSet) Bool(name string, value bool) *bool {
+// a config.Set.
+func (c *Set) Bool(name string, value bool) *bool {
 	return c.FlagSet.Bool(name, value, "")
 }
 
-// IntVar defines a int config with a given name and default value for a ConfigSet.
+// IntVar defines a int config with a given name and default value for a config.Set.
 // The argument p points to a int variable in which to store the value of the config.
-func (c *ConfigSet) IntVar(p *int, name string, value int) {
+func (c *Set) IntVar(p *int, name string, value int) {
 	c.FlagSet.IntVar(p, name, value, "")
 }
 
 // Int defines a int config variable with a given name and default value for a
-// ConfigSet.
-func (c *ConfigSet) Int(name string, value int) *int {
+// config.Set.
+func (c *Set) Int(name string, value int) *int {
 	return c.FlagSet.Int(name, value, "")
 }
 
-// Int64Var defines a int64 config with a given name and default value for a ConfigSet.
+// Int64Var defines a int64 config with a given name and default value for a config.Set.
 // The argument p points to a int64 variable in which to store the value of the config.
-func (c *ConfigSet) Int64Var(p *int64, name string, value int64) {
+func (c *Set) Int64Var(p *int64, name string, value int64) {
 	c.FlagSet.Int64Var(p, name, value, "")
 }
 
 // Int64 defines a int64 config variable with a given name and default value
-// for a ConfigSet.
-func (c *ConfigSet) Int64(name string, value int64) *int64 {
+// for a config.Set.
+func (c *Set) Int64(name string, value int64) *int64 {
 	return c.FlagSet.Int64(name, value, "")
 }
 
-// UintVar defines a uint config with a given name and default value for a ConfigSet.
+// UintVar defines a uint config with a given name and default value for a config.Set.
 // The argument p points to a uint variable in which to store the value of the config.
-func (c *ConfigSet) UintVar(p *uint, name string, value uint) {
+func (c *Set) UintVar(p *uint, name string, value uint) {
 	c.FlagSet.UintVar(p, name, value, "")
 }
 
 // Uint defines a uint config variable with a given name and default value for
-// a ConfigSet.
-func (c *ConfigSet) Uint(name string, value uint) *uint {
+// a config.Set.
+func (c *Set) Uint(name string, value uint) *uint {
 	return c.FlagSet.Uint(name, value, "")
 }
 
-// Uint64Var defines a uint64 config with a given name and default value for a ConfigSet.
+// Uint64Var defines a uint64 config with a given name and default value for a config.Set.
 // The argument p points to a uint64 variable in which to store the value of the config.
-func (c *ConfigSet) Uint64Var(p *uint64, name string, value uint64) {
+func (c *Set) Uint64Var(p *uint64, name string, value uint64) {
 	c.FlagSet.Uint64Var(p, name, value, "")
 }
 
 // Uint64 defines a uint64 config variable with a given name and default value
-// for a ConfigSet.
-func (c *ConfigSet) Uint64(name string, value uint64) *uint64 {
+// for a config.Set.
+func (c *Set) Uint64(name string, value uint64) *uint64 {
 	return c.FlagSet.Uint64(name, value, "")
 }
 
-// StringVar defines a string config with a given name and default value for a ConfigSet.
+// StringVar defines a string config with a given name and default value for a config.Set.
 // The argument p points to a string variable in which to store the value of the config.
-func (c *ConfigSet) StringVar(p *string, name string, value string) {
+func (c *Set) StringVar(p *string, name string, value string) {
 	c.FlagSet.StringVar(p, name, value, "")
 }
 
 // String defines a string config variable with a given name and default value
-// for a ConfigSet.
-func (c *ConfigSet) String(name string, value string) *string {
+// for a config.Set.
+func (c *Set) String(name string, value string) *string {
 	return c.FlagSet.String(name, value, "")
 }
 
-// Float64Var defines a float64 config with a given name and default value for a ConfigSet.
+// Float64Var defines a float64 config with a given name and default value for a config.Set.
 // The argument p points to a float64 variable in which to store the value of the config.
-func (c *ConfigSet) Float64Var(p *float64, name string, value float64) {
+func (c *Set) Float64Var(p *float64, name string, value float64) {
 	c.FlagSet.Float64Var(p, name, value, "")
 }
 
 // Float64 defines a float64 config variable with a given name and default
-// value for a ConfigSet.
-func (c *ConfigSet) Float64(name string, value float64) *float64 {
+// value for a config.Set.
+func (c *Set) Float64(name string, value float64) *float64 {
 	return c.FlagSet.Float64(name, value, "")
 }
 
-// DurationVar defines a time.Duration config with a given name and default value for a ConfigSet.
+// DurationVar defines a time.Duration config with a given name and default value for a config.Set.
 // The argument p points to a time.Duration variable in which to store the value of the config.
-func (c *ConfigSet) DurationVar(p *time.Duration, name string, value time.Duration) {
+func (c *Set) DurationVar(p *time.Duration, name string, value time.Duration) {
 	c.FlagSet.DurationVar(p, name, value, "")
 }
 
 // Duration defines a time.Duration config variable with a given name and
 // default value.
-func (c *ConfigSet) Duration(name string, value time.Duration) *time.Duration {
+func (c *Set) Duration(name string, value time.Duration) *time.Duration {
 	return globalConfig.FlagSet.Duration(name, value, "")
 }
 
 // Parse takes a path to a TOML file and loads it. This must be called after
-// all the config flags in the ConfigSet have been defined but before the flags
+// all the config flags in the config.Set have been defined but before the flags
 // are accessed by the program.
-func (c *ConfigSet) Parse(path string) error {
+func (c *Set) Parse(path string) error {
 	configBytes, err := ioutil.ReadFile(path)
 	if err != nil {
 		return err
@@ -181,9 +183,9 @@ func (c *ConfigSet) Parse(path string) error {
 }
 
 // ParseString takes a string representation of a TOML file and loads it. This
-// must be called after all the config flags in the ConfigSet have been defined
+// must be called after all the config flags in the config.Set have been defined
 // but before the flags are accessed by the program.
-func (c *ConfigSet) ParseString(str string) error {
+func (c *Set) ParseString(str string) error {
 	tomlTree, err := toml.Load(str)
 	if err != nil {
 		errorString := fmt.Sprintf("Not a valid TOML. See https://github.com/mojombo/toml")
@@ -200,16 +202,16 @@ func (c *ConfigSet) ParseString(str string) error {
 
 // ParseArguments parses flag definitions from the argument list, which should
 // not include the command name. Must be called after all the config flags in
-// the ConfigSet have been defined but before the flags are accessed by the
+// the config.Set have been defined but before the flags are accessed by the
 // program. The return value will be flag.ErrHelp if -help or -h were set but
 // not defined.
-func (c *ConfigSet) ParseArguments(arguments []string) error {
+func (c *Set) ParseArguments(arguments []string) error {
 	return c.FlagSet.Parse(arguments)
 }
 
-// loadTomlTree recursively loads a TomlTree into this ConfigSet's config
+// loadTomlTree recursively loads a TomlTree into this config.Set's config
 // variables.
-func (c *ConfigSet) loadTomlTree(tree *toml.TomlTree, path []string) error {
+func (c *Set) loadTomlTree(tree *toml.TomlTree, path []string) error {
 	for _, key := range tree.Keys() {
 		fullPath := append(path, key)
 		value := tree.Get(key)
@@ -245,24 +247,25 @@ func buildLoadError(path string, err error) error {
 	return errors.New(errorString)
 }
 
+// flag.ErrorHandling defines how to handle flag parsing errors.
 const (
 	ContinueOnError flag.ErrorHandling = flag.ContinueOnError
 	ExitOnError     flag.ErrorHandling = flag.ExitOnError
 	PanicOnError    flag.ErrorHandling = flag.PanicOnError
 )
 
-// NewConfigSet returns a new ConfigSet with the given name and error handling
-// policy. The three valid error handling policies are: flag.ContinueOnError,
-// flag.ExitOnError, and flag.PanicOnError.
-func NewConfigSet(name string, errorHandling flag.ErrorHandling) *ConfigSet {
-	return &ConfigSet{
+// New returns a new config.Set with the given name and error handling
+// policy. The three valid error handling policies are: ContinueOnError,
+// ExitOnError, and PanicOnError.
+func New(name string, errorHandling flag.ErrorHandling) *Set {
+	return &Set{
 		flag.NewFlagSet(name, errorHandling),
 	}
 }
 
 // -- globalConfig
 
-var globalConfig = NewConfigSet(os.Args[0], flag.ExitOnError)
+var globalConfig = New(os.Args[0], flag.ExitOnError)
 
 // BoolVar defines a bool config with a given name and default value.
 // The argument p points to a bool variable in which to store the value of the config.
@@ -354,7 +357,7 @@ func Duration(name string, value time.Duration) *time.Duration {
 	return globalConfig.Duration(name, value)
 }
 
-// Parse takes a path to a TOML file and loads it into the global ConfigSet.
+// Parse takes a path to a TOML file and loads it into the global config.Set.
 // This must be called after all config flags have been defined but before the
 // flags are accessed by the program.
 func Parse(path string) error {
@@ -362,7 +365,7 @@ func Parse(path string) error {
 }
 
 // ParseString takes a string representing a TOML file and loads it into the
-// global ConfigSet. This must be called after all config flags have been
+// global config.Set. This must be called after all config flags have been
 // defined but before the flags are accessed by the program.
 func ParseString(str string) error {
 	return globalConfig.ParseString(str)

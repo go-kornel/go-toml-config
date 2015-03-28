@@ -28,7 +28,7 @@ func TestBuildLoadError(t *testing.T) {
 	}
 }
 
-func testBadParse(t *testing.T, c *ConfigSet) {
+func testBadParse(t *testing.T, c *Set) {
 	// Missing path
 	err := c.Parse(MISSING_CONFIG_PATH)
 	if err == nil || err.Error() != "open examples/nope.conf: no such file or directory" {
@@ -59,7 +59,7 @@ func testBadParse(t *testing.T, c *ConfigSet) {
 	}
 }
 
-func testGoodParse(t *testing.T, c *ConfigSet) {
+func testGoodParse(t *testing.T, c *Set) {
 	boolSetting := c.Bool("my_bool", false)
 	intSetting := c.Int("my_int", 0)
 	int64Setting := c.Int64("my_bigint", 0)
