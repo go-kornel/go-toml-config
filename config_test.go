@@ -105,8 +105,8 @@ func testGoodParse(t *testing.T, c *Set) {
 }
 
 func TestParse(t *testing.T) {
-	testBadParse(t, globalConfig)
+	testBadParse(t, CommandLine)
 	testBadParse(t, New("App Config", flag.ExitOnError))
-	testGoodParse(t, globalConfig)
+	testGoodParse(t, CommandLine)
 	testGoodParse(t, New("App Config", flag.ExitOnError))
 }
