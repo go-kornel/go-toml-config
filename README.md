@@ -65,6 +65,7 @@ This package has been forked from https://github.com/stvp/go-toml-config.
 License
 -------
 
+Copyright (c) 2015 Kornel Maczyński.
 Copyright (c) 2013 Stovepipe Studios, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
