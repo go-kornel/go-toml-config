@@ -198,6 +198,15 @@ func (c *ConfigSet) ParseString(str string) error {
 	return nil
 }
 
+// ParseArguments parses flag definitions from the argument list, which should
+// not include the command name. Must be called after all the config flags in
+// the ConfigSet have been defined but before the flags are accessed by the
+// program. The return value will be flag.ErrHelp if -help or -h were set but
+// not defined.
+func (c *ConfigSet) ParseArguments(arguments []string) error {
+	return c.FlagSet.Parse(arguments)
+}
+
 // loadTomlTree recursively loads a TomlTree into this ConfigSet's config
 // variables.
 func (c *ConfigSet) loadTomlTree(tree *toml.TomlTree, path []string) error {
@@ -357,4 +366,10 @@ func Parse(path string) error {
 // defined but before the flags are accessed by the program.
 func ParseString(str string) error {
 	return globalConfig.ParseString(str)
+}
+
+// ParseArgs parses the command-line flags from os.Args[1:]. Must be called after
+// all config flags are defined and before flags are accessed by the program.
+func ParseArgs() error {
+	return globalConfig.ParseArguments(os.Args[1:])
 }
