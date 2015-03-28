@@ -1,4 +1,4 @@
-go-toml-config [![GoDoc](https://godoc.org/gopkg.in/go-kornel/go-toml-config.v0?status.svg)](https://godoc.org/gopkg.in/go-kornel/go-toml-config.v0) [![GoWalker](https://gowalker.org/api/v1/badge)](https://gowalker.org/gopkg.in/go-kornel/go-toml-config.v0) [![GoCover](http://gocover.io/_badge/gopkg.in/go-kornel/go-toml-config.v0)](http://gocover.io/gopkg.in/go-kornel/go-toml-config.v0)
+go-toml-config [![GoDoc](https://godoc.org/gopkg.in/go-kornel/go-toml-config.v0?status.svg)](https://godoc.org/gopkg.in/go-kornel/go-toml-config.v0) [![GoCover](http://gocover.io/_badge/gopkg.in/go-kornel/go-toml-config.v0)](http://gocover.io/gopkg.in/go-kornel/go-toml-config.v0)
 ==============
 
 
@@ -60,6 +60,7 @@ This package has been forked from https://github.com/stvp/go-toml-config.
   of different sources for your configuration.
 * New PareArguments functions have been added that enable you to get your
   configuration from command line arguments.
+* Added PrintCurrentValues functions.
 
 License
 -------
