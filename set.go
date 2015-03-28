@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"regexp"
 	"strings"
 	"time"
@@ -171,6 +172,16 @@ func (c *Set) ParseString(str string) error {
 // not defined.
 func (c *Set) ParseArguments(arguments []string) error {
 	return c.FlagSet.Parse(arguments)
+}
+
+// PrintCurrentValues prints lines in format
+//    flagName=flagCurrentValue
+// to the os.Stderr. Useful for showing current configuration to the user.
+// The output format is subject to change.
+func (c *Set) PrintCurrentValues() {
+	c.VisitAll(func(f *flag.Flag) {
+		fmt.Fprintf(os.Stderr, "%s=%v\n", f.Name, f.Value.String())
+	})
 }
 
 // loadTomlTree recursively loads a TomlTree into this config.Set's config

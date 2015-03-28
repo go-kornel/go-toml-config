@@ -167,3 +167,11 @@ func ParseString(str string) error {
 func ParseArgs() error {
 	return globalConfig.ParseArguments(os.Args[1:])
 }
+
+// PrintCurrentValues prints lines in format
+//    flagName=flagCurrentValue
+// to the os.Stderr. Useful for showing current configuration to the user.
+// The output format is subject to change.
+func PrintCurrentValues() {
+	globalConfig.PrintCurrentValues()
+}
