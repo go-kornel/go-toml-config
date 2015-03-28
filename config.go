@@ -40,7 +40,7 @@
 		networkConfig.Int("port", 8080)
 		networkConfig.Parse("/path/to/network.conf")
 */
-package config
+package config // import "gopkg.in/go-kornel/go-toml-config.v0"
 
 import (
 	"errors"
