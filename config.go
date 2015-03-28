@@ -46,12 +46,13 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/pelletier/go-toml"
 	"io/ioutil"
 	"os"
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/pelletier/go-toml"
 )
 
 // -- ConfigSet
@@ -168,6 +169,24 @@ func (c *ConfigSet) Parse(path string) error {
 	tomlTree, err := toml.Load(string(configBytes))
 	if err != nil {
 		errorString := fmt.Sprintf("%s is not a valid TOML file. See https://github.com/mojombo/toml", path)
+		return errors.New(errorString)
+	}
+
+	err = c.loadTomlTree(tomlTree, []string{})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ParseString takes a string representation of a TOML file and loads it. This
+// must be called after all the config flags in the ConfigSet have been defined
+// but before the flags are accessed by the program.
+func (c *ConfigSet) ParseString(str string) error {
+	tomlTree, err := toml.Load(str)
+	if err != nil {
+		errorString := fmt.Sprintf("Not a valid TOML. See https://github.com/mojombo/toml")
 		return errors.New(errorString)
 	}
 
@@ -331,4 +350,11 @@ func Duration(name string, value time.Duration) *time.Duration {
 // flags are accessed by the program.
 func Parse(path string) error {
 	return globalConfig.Parse(path)
+}
+
+// ParseString takes a string representing a TOML file and loads it into the
+// global ConfigSet. This must be called after all config flags have been
+// defined but before the flags are accessed by the program.
+func ParseString(str string) error {
+	return globalConfig.ParseString(str)
 }
