@@ -60,92 +60,92 @@ var globalConfig = New(os.Args[0], flag.ExitOnError)
 
 // BoolVar defines a bool config with a given name and default value.
 // The argument p points to a bool variable in which to store the value of the config.
-func BoolVar(p *bool, name string, value bool) {
-	globalConfig.BoolVar(p, name, value)
+func BoolVar(p *bool, name string, value bool, usage string) {
+	globalConfig.BoolVar(p, name, value, usage)
 }
 
 // Bool defines a bool config variable with a given name and default value.
-func Bool(name string, value bool) *bool {
-	return globalConfig.Bool(name, value)
+func Bool(name string, value bool, usage string) *bool {
+	return globalConfig.Bool(name, value, usage)
 }
 
 // IntVar defines a int config with a given name and default value.
 // The argument p points to a int variable in which to store the value of the config.
-func IntVar(p *int, name string, value int) {
-	globalConfig.IntVar(p, name, value)
+func IntVar(p *int, name string, value int, usage string) {
+	globalConfig.IntVar(p, name, value, usage)
 }
 
 // Int defines a int config variable with a given name and default value.
-func Int(name string, value int) *int {
-	return globalConfig.Int(name, value)
+func Int(name string, value int, usage string) *int {
+	return globalConfig.Int(name, value, usage)
 }
 
 // Int64Var defines a int64 config with a given name and default value.
 // The argument p points to a int64 variable in which to store the value of the config.
-func Int64Var(p *int64, name string, value int64) {
-	globalConfig.Int64Var(p, name, value)
+func Int64Var(p *int64, name string, value int64, usage string) {
+	globalConfig.Int64Var(p, name, value, usage)
 }
 
 // Int64 defines a int64 config variable with a given name and default value.
-func Int64(name string, value int64) *int64 {
-	return globalConfig.Int64(name, value)
+func Int64(name string, value int64, usage string) *int64 {
+	return globalConfig.Int64(name, value, usage)
 }
 
 // UintVar defines a uint config with a given name and default value.
 // The argument p points to a uint variable in which to store the value of the config.
-func UintVar(p *uint, name string, value uint) {
-	globalConfig.UintVar(p, name, value)
+func UintVar(p *uint, name string, value uint, usage string) {
+	globalConfig.UintVar(p, name, value, usage)
 }
 
 // Uint defines a uint config variable with a given name and default value.
-func Uint(name string, value uint) *uint {
-	return globalConfig.Uint(name, value)
+func Uint(name string, value uint, usage string) *uint {
+	return globalConfig.Uint(name, value, usage)
 }
 
 // Uint64Var defines a uint64 config with a given name and default value.
 // The argument p points to a uint64 variable in which to store the value of the config.
-func Uint64Var(p *uint64, name string, value uint64) {
-	globalConfig.Uint64Var(p, name, value)
+func Uint64Var(p *uint64, name string, value uint64, usage string) {
+	globalConfig.Uint64Var(p, name, value, usage)
 }
 
 // Uint64 defines a uint64 config variable with a given name and default value.
-func Uint64(name string, value uint64) *uint64 {
-	return globalConfig.Uint64(name, value)
+func Uint64(name string, value uint64, usage string) *uint64 {
+	return globalConfig.Uint64(name, value, usage)
 }
 
 // StringVar defines a string config with a given name and default value.
 // The argument p points to a string variable in which to store the value of the config.
-func StringVar(p *string, name string, value string) {
-	globalConfig.StringVar(p, name, value)
+func StringVar(p *string, name string, value string, usage string) {
+	globalConfig.StringVar(p, name, value, usage)
 }
 
 // String defines a string config variable with a given name and default value.
-func String(name string, value string) *string {
-	return globalConfig.String(name, value)
+func String(name string, value string, usage string) *string {
+	return globalConfig.String(name, value, usage)
 }
 
 // Float64Var defines a float64 config with a given name and default value.
 // The argument p points to a float64 variable in which to store the value of the config.
-func Float64Var(p *float64, name string, value float64) {
-	globalConfig.Float64Var(p, name, value)
+func Float64Var(p *float64, name string, value float64, usage string) {
+	globalConfig.Float64Var(p, name, value, usage)
 }
 
 // Float64 defines a float64 config variable with a given name and default
 // value.
-func Float64(name string, value float64) *float64 {
-	return globalConfig.Float64(name, value)
+func Float64(name string, value float64, usage string) *float64 {
+	return globalConfig.Float64(name, value, usage)
 }
 
 // DurationVar defines a time.Duration config with a given name and default value.
 // The argument p points to a time.Duration variable in which to store the value of the config.
-func DurationVar(p *time.Duration, name string, value time.Duration) {
-	globalConfig.DurationVar(p, name, value)
+func DurationVar(p *time.Duration, name string, value time.Duration, usage string) {
+	globalConfig.DurationVar(p, name, value, usage)
 }
 
 // Duration defines a time.Duration config variable with a given name and
 // default value.
-func Duration(name string, value time.Duration) *time.Duration {
-	return globalConfig.Duration(name, value)
+func Duration(name string, value time.Duration, usage string) *time.Duration {
+	return globalConfig.Duration(name, value, usage)
 }
 
 // Parse takes a path to a TOML file and loads it into the global config.Set.

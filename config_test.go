@@ -42,8 +42,8 @@ func testBadParse(t *testing.T, c *Set) {
 	}
 
 	// Type mismatch
-	c.Int("cool", 10)
-	c.Float64("neat.terrific", 10.1)
+	c.Int("cool", 10, "")
+	c.Float64("neat.terrific", 10.1, "")
 	err = c.Parse(SIMPLE_CONFIG_PATH)
 	if err == nil {
 		t.Error("Expected an error but didn't get one.")
@@ -60,15 +60,15 @@ func testBadParse(t *testing.T, c *Set) {
 }
 
 func testGoodParse(t *testing.T, c *Set) {
-	boolSetting := c.Bool("my_bool", false)
-	intSetting := c.Int("my_int", 0)
-	int64Setting := c.Int64("my_bigint", 0)
-	uintSetting := c.Uint("my_uint", 0)
-	uint64Setting := c.Uint64("my_biguint", 0)
-	stringSetting := c.String("my_string", "nope")
-	float64Setting := c.Float64("my_bigfloat", 0)
-	nestedSetting := c.String("section.name", "")
-	deepNestedSetting := c.String("places.california.name", "")
+	boolSetting := c.Bool("my_bool", false, "")
+	intSetting := c.Int("my_int", 0, "")
+	int64Setting := c.Int64("my_bigint", 0, "")
+	uintSetting := c.Uint("my_uint", 0, "")
+	uint64Setting := c.Uint64("my_biguint", 0, "")
+	stringSetting := c.String("my_string", "nope", "")
+	float64Setting := c.Float64("my_bigfloat", 0, "")
+	nestedSetting := c.String("section.name", "", "")
+	deepNestedSetting := c.String("places.california.name", "", "")
 
 	err := c.Parse(GOOD_CONFIG_PATH)
 	if err != nil {
