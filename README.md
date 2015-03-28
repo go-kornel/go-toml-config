@@ -1,4 +1,4 @@
-go-toml-config
+go-toml-config [![GoDoc](https://godoc.org/gopkg.in/go-kornel/go-toml-config.v0?status.svg)](https://godoc.org/gopkg.in/go-kornel/go-toml-config.v0) [![GoWalker](https://gowalker.org/api/v1/badge)](https://gowalker.org/gopkg.in/go-kornel/go-toml-config.v0) [![GoCover](http://gocover.io/_badge/gopkg.in/go-kornel/go-toml-config.v0)](http://gocover.io/gopkg.in/go-kornel/go-toml-config.v0)
 ==============
 
 
@@ -45,11 +45,21 @@ You can also create different ConfigSets to manage different logical groupings
 of config variables:
 
 ```go
-networkConfig = config.NewConfigSet("network settings", config.ExitOnError)
+networkConfig = config.New("network settings", config.ExitOnError)
 networkConfig.String("host", "localhost")
 networkConfig.Int("port", 8080)
 networkConfig.Parse("/path/to/network.conf")
 ```
+
+About
+-----
+This package has been forked from https://github.com/stvp/go-toml-config.
+
+* Some stutter has been avoided.
+* New ParseString functions have beed added that enable you to e.g. use a couple
+  of different sources for your configuration.
+* New PareArguments functions have been added that enable you to get your
+  configuration from command line arguments.
 
 License
 -------
